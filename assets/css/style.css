@@ -1,0 +1,43 @@
+body{
+    background-image: url('../img/bg2.svg');
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.card-click{
+    transition: .3s;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.212);
+    color: black;
+    border-radius: 1em !important;
+}
+
+.card-click:hover{
+    transition: .3s;
+    box-shadow: none;
+    text-decoration: none;
+}
+
+.link-card-paket:hover{
+    text-decoration: none;
+}
+
+.pointer{
+    cursor: pointer;
+}
+
+.text-update{
+    color: rgba(90, 175, 149, 0.397) !important;
+}
+
+.text-update:hover{
+    color: rgb(90, 175, 149) !important;
+}
+
+.c-detail{
+    height: 1000px;
+}
+
+.img-logo-navbar{
+    max-width: 30px;
+}

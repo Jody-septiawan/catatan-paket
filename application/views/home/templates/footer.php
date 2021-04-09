@@ -6,7 +6,10 @@
 <!-- SweetAlert -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script src="<?= base_url('assets/js/sa.js') ?>"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
+    AOS.init();
+
     let btnFormTambah = document.getElementById("btn-form-tambah");
 
     let tagNamaPaket = false;
@@ -42,8 +45,60 @@
             btnFormTambah.setAttribute("disabled", "");
         }
     }
-</script>
 
+    function changeInputNewPasswordType() {
+        let inputPasswordType = document.getElementById("input-new-password").getAttribute('type');
+        if (inputPasswordType == 'text') {
+            document.getElementById("input-new-password").setAttribute('type', 'password');
+            $('#icon-eye').toggleClass('d-none');
+            $('#icon-eye-slash').toggleClass('d-none');
+        } else {
+            document.getElementById("input-new-password").setAttribute('type', 'text');
+            $('#icon-eye-slash').toggleClass('d-none');
+            $('#icon-eye').toggleClass('d-none');
+        }
+    }
+
+    function changeInputNewPassword2Type() {
+        let inputPasswordType = document.getElementById("input-new-password2").getAttribute('type');
+        if (inputPasswordType == 'text') {
+            document.getElementById("input-new-password2").setAttribute('type', 'password');
+            $('#icon-eye2').toggleClass('d-none');
+            $('#icon-eye-slash2').toggleClass('d-none');
+        } else {
+            document.getElementById("input-new-password2").setAttribute('type', 'text');
+            $('#icon-eye-slash2').toggleClass('d-none');
+            $('#icon-eye2').toggleClass('d-none');
+        }
+    }
+
+    function checkPassword() {
+        let pw1 = document.getElementById("input-new-password").value;
+        let pw2 = document.getElementById("input-new-password2").value;
+
+        if (pw1) {
+            if (pw1 != pw2) {
+                document.getElementById("alert-password").innerHTML = '<span class="text-danger">Password tidak sama</span>';
+                document.getElementById("btn-update-password").setAttribute('disabled', 'true')
+            } else {
+                document.getElementById("alert-password").innerHTML = '<span class="text-success">Password sama <i class="fas fa-check text-success"></i></span>';
+                document.getElementById("btn-update-password").removeAttribute('disabled');
+            }
+
+            if (!pw2) {
+                document.getElementById("alert-password").innerHTML = null;
+            }
+        }
+    }
+
+    function checkInputNewPassword(val) {
+        if (val) {
+            $('#confirmPassword').removeClass('d-none');
+        } else {
+            $('#confirmPassword').addClass('d-none');
+        }
+    }
+</script>
 </body>
 
 </html>

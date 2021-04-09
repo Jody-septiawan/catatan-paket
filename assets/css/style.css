@@ -9,7 +9,7 @@ body{
     transition: .3s;
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.212);
     color: black;
-    border-radius: 1em !important;
+    border-radius: 10px !important;
 }
 
 .card-click:hover{
@@ -41,3 +41,14 @@ body{
 .img-logo-navbar{
     max-width: 30px;
 }
+
+.btn-group:hover>.dropdown-menu {
+    display: block;
+    transition: 1s;
+  }
+/*   
+  .btn-group>.dropdown-toggle:active {
+      pointer-events: none;
+    transition: 1s;
+  }
+   */

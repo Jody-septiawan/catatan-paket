@@ -33,9 +33,13 @@ class Auth extends CI_Controller
                 $this->session->set_userdata($data);
                 redirect('/');
             } else {
+                $this->session->set_flashdata('message', "<div class='alert alert-danger py-1 mt-3' role='alert'>
+                <b>Username</b> atau <b>password</b> salah </div>");
                 redirect('auth');
             }
         } else {
+            $this->session->set_flashdata('message', "<div class='alert alert-danger py-1 mt-3' role='alert'>
+            <b>Username</b> atau <b>password</b> salah  </div>");
             redirect('auth');
         }
     }

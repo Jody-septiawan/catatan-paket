@@ -1,7 +1,7 @@
-<div class="container mt-3 mb-5">
+<div class="container mt-3 pb-5">
     <div class="row">
         <div class="col-12">
-            <div class="card">
+            <div class="card shadow">
                 <div class="card-body py-1">
                     <div class="row">
                         <div class="col-6">

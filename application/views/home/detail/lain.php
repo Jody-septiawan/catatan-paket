@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <div class="card mt-2 mb-3 shadow">
+            <!-- <div class="card mt-2 mb-3 shadow">
                 <div class="card-header py-2">
                     <div class="row">
                         <div class="col-6 px-1">
@@ -58,10 +58,10 @@
                             </table>
                         </div>
                     <?php else : ?>
-                        <div class="text-center"><i>Tidak ada catatan upah tukang</i></div>
+                        <div class="text-center"><i>Tidak ada catatan biaya lain-lain</i></div>
                     <?php endif; ?>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>
@@ -69,7 +69,7 @@
 
 <!-- Modal Material -->
 <div class="modal fade" id="addLain" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header py-2">
                 <h5 class="modal-title">Tambah Biaya lain-lain</h5>
@@ -102,7 +102,7 @@
 
 <?php foreach ($lain as $m) : ?>
     <div class="modal fade" id="updateLain<?= $m['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header py-2">
                     <h5 class="modal-title">Update Tukang</h5>

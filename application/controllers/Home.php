@@ -13,8 +13,16 @@ class Home extends CI_Controller
     public function index()
     {
         $data['title'] = '- Dashboard';
+
         $query = "SELECT * FROM main ORDER BY id DESC";
         $data['data'] = $this->db->query($query)->result_array();
+        $data['user'] = $this->db->get_where('user', ['id' => $this->session->userdata('user_id')])->row_array();
+
+        $data['user'] = [
+            'id' => $data['user']['id'],
+            'username' => $data['user']['username']
+        ];
+
         $this->load->view('home/templates/header', $data);
         $this->load->view('home/index');
         $this->load->view('home/templates/footer');
@@ -65,8 +73,45 @@ class Home extends CI_Controller
         }
     }
 
+    public function updateUsername()
+    {
+        $id = $this->input->post('id');
+        $username = $this->input->post('username');
+
+        $this->db->where('id', $id);
+        $this->db->set('username', $username);
+        $this->db->update('user');
+
+        $this->session->set_flashdata('message', "<div class='alert alert-success py-1 mt-3 shadow' role='alert'>
+        Update username <b>$username</b> berhasil </div>");
+
+        redirect('home');
+    }
+
+    public function updatePassword()
+    {
+        $id = $this->input->post('id');
+        $password = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
+
+        $this->db->where('id', $id);
+        $this->db->set('password', $password);
+        $this->db->update('user');
+
+        $this->session->set_flashdata('message', "<div class='alert alert-success py-1 mt-3 shadow' role='alert'>
+        Update password berhasil </div>");
+
+        redirect('home');
+    }
+
     public function detailPaket($id = null)
     {
+        $data['user'] = $this->db->get_where('user', ['id' => $this->session->userdata('user_id')])->row_array();
+
+        $data['user'] = [
+            'id' => $data['user']['id'],
+            'username' => $data['user']['username']
+        ];
+
         $data['data'] = $this->db->get_where('main', ['id' => $id])->row_array();
         $data['material'] = $this->db->get_where('material', ['id_main' => $id])->result_array();
         $data['tukang'] = $this->db->get_where('tukang', ['id_main' => $id])->result_array();
@@ -102,6 +147,51 @@ class Home extends CI_Controller
         $this->load->view('home/detail/lain');
         $this->load->view('home/detail/delete_paket');
         $this->load->view('home/templates/footer');
+    }
+
+    public function updateNama()
+    {
+        $id = $this->input->post('id');
+        $nama = $this->input->post('nama');
+
+        $this->db->where('id', $id);
+        $this->db->set('nama', $nama);
+        $this->db->update('main');
+
+        $this->session->set_flashdata('message', "<div class='alert alert-success py-1 mt-3' role='alert'>
+        Update nama paket berhasil </div>");
+
+        redirect("home/detailPaket/$id");
+    }
+
+    public function updateNilai()
+    {
+        $id = $this->input->post('id');
+        $nilai = $this->input->post('nilai');
+
+        $this->db->where('id', $id);
+        $this->db->set('nilai', $nilai);
+        $this->db->update('main');
+
+        $this->session->set_flashdata('message', "<div class='alert alert-success py-1 mt-3' role='alert'>
+        Update nilai paket berhasil </div>");
+
+        redirect("home/detailPaket/$id");
+    }
+
+    public function updateKet()
+    {
+        $id = $this->input->post('id');
+        $ket = $this->input->post('ket');
+
+        $this->db->where('id', $id);
+        $this->db->set('ket', $ket);
+        $this->db->update('main');
+
+        $this->session->set_flashdata('message', "<div class='alert alert-success py-1 mt-3' role='alert'>
+        Update keterangan berhasil </div>");
+
+        redirect("home/detailPaket/$id");
     }
 
     public function addUM()
@@ -319,10 +409,10 @@ class Home extends CI_Controller
             $this->db->delete('lain');
 
             $nama = $check['nama'];
-            $this->session->set_flashdata('message3', "<div class='alert alert-success py-1' role='alert'>
+            $this->session->set_flashdata('message4', "<div class='alert alert-success py-1' role='alert'>
                 Hapus Biaya lain-lain $nama berhasil </div>");
         } else {
-            $this->session->set_flashdata('message3', "<div class='alert alert-danger py-1' role='alert'>
+            $this->session->set_flashdata('message4', "<div class='alert alert-danger py-1' role='alert'>
                 Hapus Biaya lain-lain gagal </div>");
         }
 

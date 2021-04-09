@@ -5,9 +5,25 @@
             $this->session->flashdata('message');
             ?>
         </div>
+        <?php if (!$data) : ?>
+            <div class="col-md-4"></div>
+            <div class="col-md-4 text-center pt-4">
+                <div class="card card-click">
+                    <div class="card-body">
+                        <img src="<?= base_url('assets/img/no-data.svg') ?>" class="img-fluid" alt="">
+                        <div class="text-center">
+                            <i class="text-muted">No data paket</i> <br>
+                            <button class="btn btn-sm btn-primary mt-4" data-toggle="modal" data-target="#modelId">Tambah Paket</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4"></div>
+
+        <?php endif; ?>
         <?php foreach ($data as $d) : ?>
-            <div class="col-lg-3 c mt-4">
-                <a href="<?= base_url('home/detailPaket/') . $d['id']  ?>" class="link-card-paket">
+            <div class="col-lg-3 mt-4" data-aos="zoom-in" data-aos-delay="200">
+                <a href=" <?= base_url('home/detailPaket/') . $d['id']  ?>" class="link-card-paket">
                     <div class="card card-click">
                         <div class="card-body py-2">
                             <small class="text-muted"><?= $d['createAt'] ?></small>

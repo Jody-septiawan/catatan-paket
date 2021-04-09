@@ -1,6 +1,6 @@
 <!-- Modal Material -->
 <div class="modal fade" id="addTukang" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header py-2">
                 <h5 class="modal-title">Tambah Upah Tukang</h5>
@@ -33,7 +33,7 @@
 
 <?php foreach ($tukang as $m) : ?>
     <div class="modal fade" id="updateTukang<?= $m['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header py-2">
                     <h5 class="modal-title">Update Tukang</h5>

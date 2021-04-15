@@ -65,6 +65,9 @@ class Home extends CI_Controller
             $this->db->where('id_main', $id);
             $this->db->delete('lain');
 
+            $this->db->where('id_main', $id);
+            $this->db->delete('pembayaran');
+
             $nama = $check['nama'];
             $this->session->set_flashdata('message', "<div class='alert alert-success py-1 mt-3' role='alert'>
                 Hapus paket $nama berhasil </div>");
@@ -116,7 +119,13 @@ class Home extends CI_Controller
         $data['material'] = $this->db->get_where('material', ['id_main' => $id])->result_array();
         $data['tukang'] = $this->db->get_where('tukang', ['id_main' => $id])->result_array();
         $data['lain'] = $this->db->get_where('lain', ['id_main' => $id])->result_array();
+        $data['pembayaran'] = $this->db->get_where('pembayaran', ['id_main' => $id])->result_array();
         $data['title'] = '- ' . $data['data']['nama'];
+
+        $data['Total_pembayaran'] = 0;
+        foreach ($data['pembayaran'] as $m) :
+            $data['Total_pembayaran'] += $m['harga'];
+        endforeach;
 
         $data['Total_material'] = 0;
         foreach ($data['material'] as $m) :
@@ -132,6 +141,8 @@ class Home extends CI_Controller
         foreach ($data['lain'] as $m) :
             $data['Total_lain'] += $m['harga'];
         endforeach;
+
+        $data['sisa_pembayaran'] = $data['data']['nilai'] - $data['Total_pembayaran'];
 
         $data['nominal_ppn'] = $data['data']['nilai'] * ($data['data']['ppn_pph'] / 100);
 
@@ -414,6 +425,59 @@ class Home extends CI_Controller
         } else {
             $this->session->set_flashdata('message4', "<div class='alert alert-danger py-1' role='alert'>
                 Hapus Biaya lain-lain gagal </div>");
+        }
+
+        redirect("home/detailPaket/$id_paket");
+    }
+
+    public function addPembayaran()
+    {
+        $id_main = $this->input->post('id');
+        $harga = $this->input->post('harga');
+
+        $data = [
+            'id_main' => $id_main,
+            'harga' => $harga
+        ];
+
+        $this->db->insert('pembayaran', $data);
+
+        redirect("home/detailPaket/$id_main");
+    }
+
+    public function updatePembayaran()
+    {
+        $id = $this->input->post('id');
+        $id_paket = $this->input->post('id_paket');
+        $harga = $this->input->post('harga');
+
+        $data = [
+            'id_main' => $id_paket,
+            'harga' => $harga
+        ];
+
+        $this->db->where('id', $id);
+        $this->db->update('pembayaran', $data);
+
+        $this->session->set_flashdata('message4', "<div class='alert alert-success py-1' role='alert'>
+        Update pembayaran berhasil </div>");
+
+        redirect("home/detailPaket/$id_paket");
+    }
+
+    public function deletePembayaran($id = null, $id_paket = null)
+    {
+        $check = $this->db->get_where('pembayaran', ['id' => $id])->row_array();
+
+        if ($check) {
+            $this->db->where('id', $id);
+            $this->db->delete('pembayaran');
+
+            $this->session->set_flashdata('message4', "<div class='alert alert-success py-1' role='alert'>
+                Hapus pembayaran berhasil </div>");
+        } else {
+            $this->session->set_flashdata('message4', "<div class='alert alert-danger py-1' role='alert'>
+                Hapus pembayaran gagal </div>");
         }
 
         redirect("home/detailPaket/$id_paket");

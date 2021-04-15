@@ -37,6 +37,13 @@
             document.getElementById("nominalLain" + id).innerHTML = rupiah;
         }
 
+        function showRupiahPembayaran(nominal, id) {
+            let rupiah = toRupiah(nominal);
+            document.getElementById("nominalPembayaran" + id).innerHTML = rupiah;
+            // console.log(rupiah);
+            // console.log("nominalPembayaran" + id);
+        }
+
         function toRupiah(nominal) {
             let bilangan = nominal;
 
@@ -63,7 +70,7 @@
             <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <div class="collapse navbar-collapse text-right" id="collapsibleNavId">
                 <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                     <?php if ($title == '- Dashboard') : ?>
                         <li class="nav-item active">
@@ -79,7 +86,7 @@
 
                     <li class="nav-item active">
                         <div class="btn-group">
-                            <button type="button" class="btn btn-sm ml-md-2 btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <button type="button" class="btn btn-sm mt-2 mt-md-0 ml-md-2 btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Akun Saya
                             </button>
                             <div class="dropdown-menu dropdown-menu-right shadow">

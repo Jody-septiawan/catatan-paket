@@ -15,7 +15,6 @@
                                     <tr>
                                         <th width="20%">Tanggal</th>
                                         <td width="80%"><?= $data['createAt'] ?></td>
-                                    </tr>
                                     <tr>
                                         <th width="20%">Nama Paket</th>
                                         <td width="80%"><?= $data['nama'] ?> <i class="fas fa-pen-alt text-update pointer ml-2" data-toggle="modal" data-target="#updateNama"></i></td>
@@ -29,7 +28,7 @@
                                             </script>
                                         </td>
                                     </tr>
-                                    <tr>
+                                    <!-- <tr>
                                         <th width="20%">UM-Termin</th>
                                         <td width="80%">
                                             <?php if (!$data['um_termin']) : ?>
@@ -43,7 +42,7 @@
                                                 </script>
                                             <?php endif; ?>
                                         </td>
-                                    </tr>
+                                    </tr> -->
                                     <tr>
                                         <th width="20%">PPN - PPH</th>
                                         <td width="80%">
